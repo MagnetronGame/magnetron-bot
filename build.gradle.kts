@@ -10,15 +10,31 @@ plugins {
 
     // Apply the java-library plugin for API and implementation separation.
     `java-library`
+    `maven-publish`
 }
+
+group = "org.magnetron"
+version = "0.1"
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
 
 repositories {
     // Use jcenter for resolving dependencies.
     // You can declare any Maven/Ivy/file repository here.
+    maven { url = uri("https://jitpack.io") }
     jcenter()
+
 }
 
 dependencies {
+    implementation("com.github.eirik1502:mcts-kotlin:-SNAPSHOT")
+    implementation("com.github.MagnetronGame:magnetron-game-kotlin:include-collision-data-SNAPSHOT")
+
+
     // Align versions of all Kotlin components
     implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
 
@@ -30,4 +46,14 @@ dependencies {
 
     // Use the Kotlin JUnit integration.
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
+
+
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("mavenJava") {
+            from(components["java"])
+        }
+    }
 }
