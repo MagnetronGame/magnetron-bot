@@ -1,9 +1,7 @@
 package magnetron_bot
 
-import Play
-import magnetron_game_kotlin.MagnetronFuncs
+import magnetron_game_kotlin.MagGame
 import magnetron_game_kotlin.magnetron_state.MagState
-import mcts.MctsPlayer
 import kotlin.test.Test
 
 class MagnetronMctsTest {
@@ -36,14 +34,14 @@ class MagnetronMctsTest {
                 )
         )
 
-        val initialState = MagnetronFuncs.createInitialState()
+        val initialState = MagGame.createInitialState()
         var states = mutableListOf(initialState)
         do {
             val currState = states.last()
             val playerTurn = currState.playPhase.nextAvatarIndex
             val player = players[playerTurn]
             val action = player.pickAction(currState)
-            val nextState = MagnetronFuncs.performAction(currState, action)
+            val nextState = MagGame.performAction(currState, action)
             states.add(nextState)
         } while (!nextState.lifecycleState.isTerminal)
         return states

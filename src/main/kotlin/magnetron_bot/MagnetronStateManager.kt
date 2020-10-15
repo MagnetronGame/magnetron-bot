@@ -1,6 +1,6 @@
 package magnetron_bot
 
-import magnetron_game_kotlin.MagnetronFuncs
+import magnetron_game_kotlin.MagGame
 import magnetron_game_kotlin.magnetron_state.MagAction
 import magnetron_game_kotlin.magnetron_state.MagState
 import mcts.Action
@@ -9,7 +9,7 @@ import mcts.StateManager
 
 
 class MagnetronStateManager : StateManager {
-    val initialState =  MagnetronFuncs.createInitialState()
+    val initialState =  MagGame.createInitialState()
 
     override fun getInitialState(): State = initialState
 
@@ -51,7 +51,7 @@ class MagnetronStateManager : StateManager {
 
     override fun getPossibleActions(state: State): Collection<Action> {
         state as MagState
-        return MagnetronFuncs.getPossibleActions(state)
+        return MagGame.getPossibleActions(state)
     }
 
     override fun isTerminalState(state: State): Boolean {
@@ -62,6 +62,6 @@ class MagnetronStateManager : StateManager {
     override fun performAction(state: State, action: Action): State {
         state as MagState
         action as MagAction
-        return MagnetronFuncs.performAction(state, action)
+        return MagGame.performAction(state, action)
     }
 }

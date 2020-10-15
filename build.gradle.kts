@@ -32,7 +32,7 @@ repositories {
 
 dependencies {
     implementation("com.github.eirik1502:mcts-kotlin:-SNAPSHOT")
-    implementation("com.github.MagnetronGame:magnetron-game-kotlin:include-collision-data-SNAPSHOT")
+    implementation("com.github.MagnetronGame:magnetron-game-kotlin:-SNAPSHOT")
 
 
     // Align versions of all Kotlin components
